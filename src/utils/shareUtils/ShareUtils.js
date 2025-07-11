@@ -46,3 +46,8 @@ export const validPass = (password,confirmPassword) => {
   }
   return true
 }
+
+//save or update user
+export const SaveUserInDb = async (userData) => {
+  const { data } = axios.post(`${import.meta.env.VITE_baseURL}/users`, userData);
+}

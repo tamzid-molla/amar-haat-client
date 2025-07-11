@@ -4,17 +4,54 @@ import {
   FaLock,
 } from "react-icons/fa";
 import loginImg from "../../assets/authAssets/Login.png";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Input from "../../components/shared/authCompo/Input";
 import Button from "../../components/shared/buttons/Button";
 import GoogleLogin from "../../components/shared/authCompo/GoogleLogin";
+import useAuth from "../../hooks/firebase/useAuth";
+import Swal from "sweetalert2";
+import { SaveUserInDb } from "../../utils/shareUtils/ShareUtils";
 
 const Login = () => {
+  const { loginWithEmailPass, user } = useAuth();
+  const [loading, setLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
+  const navigate = useNavigate();
 
   //handle Login
-  const handleLogin = (e) => {
+  const handleLogin = async(e) => {
     e.preventDefault();
+    setLoading(true)
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    try {
+      const credential = await loginWithEmailPass(email, password);
+      const updateUser = {
+        name: credential?.user?.displayName,
+        email: credential?.user?.email,
+        image: credential?.user?.photoURL,
+      }
+      // save user Data
+      await SaveUserInDb(updateUser);
+      navigate(location.state || "/");
+      Swal.fire({
+        icon: "success",
+        title: "Login Successful",
+        text: `Welcome back, ${credential.user?.displayName}!`,
+        timer: 2000,
+        showConfirmButton: false,
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: error.message || "An error occurred during login.",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+    } finally {
+      setLoading(false)
+    }
   };
   return (
     <div className="min-h-screen flex justify-center items-center">
@@ -56,7 +93,7 @@ const Login = () => {
                 toggleShowPass={() => setShowPass(!showPass)}></Input>
 
               {/* Submit Button */}
-              <Button type={"submit"} name={"Sign In"} widthFull={true}></Button>
+              <Button type={"submit"} name={"Sign In"} widthFull={true} loading={loading? true : false}></Button>
             </form>
 
             {/* Divider */}

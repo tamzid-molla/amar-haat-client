@@ -5,52 +5,64 @@ import GoogleLogin from "../../components/shared/authCompo/GoogleLogin";
 import Input from "../../components/shared/authCompo/Input";
 import { FaEnvelope, FaImage, FaLock, FaUser } from "react-icons/fa";
 import Button from "../../components/shared/buttons/Button";
-import { Link } from "react-router";
-import { getPhotoURL,validPass } from "../../utils/shareUtils/ShareUtils";
+import { Link, useNavigate } from "react-router";
+import { getPhotoURL, SaveUserInDb, validPass } from "../../utils/shareUtils/ShareUtils";
 import useAuth from "../../hooks/firebase/useAuth";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { setUser, registerWithEmailPass, updateUser, user } = useAuth();
   const [loading, setLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
+  const navigate = useNavigate();
+
+  //Handle register
   const handleRegister = async (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     const name = e.target.name.value;
     const email = e.target.email.value;
     const photo = e.target.photo.files[0];
     const password = e.target.password.value;
     const confirmPassword = e.target.confirm_password.value;
+
     //Generate Photo URL
     const imageURL = await getPhotoURL(photo);
-    // Valid password 
+    // Valid password
     const passwordValidation = await validPass(password, confirmPassword);
-    if (!passwordValidation) return
+    if (!passwordValidation) return;
 
     try {
       //Create user with email and password
       const credential = await registerWithEmailPass(email, password);
-      const newUser = credential?.user
+      const newUser = credential?.user;
       if (!newUser) throw new Error("User creation failed");
-      
       //Update Profile
       await updateUser({ displayName: name, photoURL: imageURL });
-      setUser({...user,displayName:name,photoURL:imageURL})
+      const updatedUser = {
+        name: newUser?.displayName,
+        email:newUser?.email,
+        image: newUser?.photoURL,
+      };
+      // save user Data
+      await SaveUserInDb(updatedUser);
+      navigate(location.state || "/");
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: error.message || "An unexpected error occurred. Please try again.",
+      });
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
-  console.log("tamzid");
-  console.log(user);
+
   return (
-    <div className="min-h-screen pt-16 w-11/12 mx-auto px-4 mb-16 rounded-2xl md:px-8 bg-base-secondary dark:bg-darkBase-secondary flex items-center justify-center">
-      <div className=" rounded-xl w-full max-w-6xl p-6 md:p-10">
+    <div className="min-h-screen w-11/12 mx-auto px-4 rounded-2xl md:px-8 flex items-center justify-center">
+      <div className=" rounded-xl max-w-6xl p-6 md:p-10">
         {/* Heading center */}
-        <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 dark:text-white mb-10">
-          Register Account
-        </h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-center text-textSecondary mb-10">Register Account</h2>
 
         {/* Grid content (image + form) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -91,7 +103,7 @@ const Register = () => {
               />
 
               {/* Submit Button */}
-              <Button type={"submit"} name={"Sign Up"} widthFull={true} loading={loading? true : false} />
+              <Button type={"submit"} name={"Sign Up"} widthFull={true} loading={loading ? true : false} />
             </form>
 
             {/* Divider + Google Login */}
