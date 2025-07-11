@@ -1,15 +1,16 @@
 import React from "react";
+import { ClipLoader } from "react-spinners";
 
-const Button = ({ name, type, widthFull = false }) => {
+const Button = ({ name, type, widthFull = false,loading = false }) => {
   return (
     <button
+      disabled={loading? true: false}
       type={type}
-      className={`text-white bg-accent px-2 py-1 rounded-xl cursor-pointer ${
+      className={`text-white bg-accent px-2 py-1 rounded-xl ${loading? "cursor-not-allowed":"cursor-pointer"} ${
           widthFull && "w-full py-2 font-medium"
-      }`}>
-      {name}
+        }`}>
+      {loading ? <ClipLoader size={19}/>: name}
       </button>
-      
   );
 };
 
