@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import logo from "../../../assets/logo.png";
+import { useState } from "react";
 import Button from "../buttons/Button";
 import NavLinks from "../navLinks/NavLinks";
 import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
@@ -7,6 +6,7 @@ import NavSideBar from "./NavSideBar";
 import { Link, useNavigate } from "react-router";
 import useAuth from "../../../hooks/firebase/useAuth";
 import Swal from "sweetalert2";
+import Logo from "../logo/Logo";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -48,14 +48,11 @@ const Navbar = () => {
     <nav className="bg-bgPrimary border-b">
       <div className="w-11/12 mx-auto flex justify-between items-center h-16">
         {/* Logo and name */}
-        <div className="flex items-center space-x-2">
-          <img src={logo} alt="logo" className="w-8 h-8 object-contain rounded-full" />
-          <span className="text-2xl font-bold text-accent">AmarHaat</span>
-        </div>
+        <Logo></Logo>
         {/* NavLinks  */}
         <ul className="hidden md:flex space-x-6">{links}</ul>
         {/* Auth related */}
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="flex gap-5 items-center">
           <div className="flex items-center space-x-2">
             {user?.photoURL ? (
               <img
@@ -72,6 +69,7 @@ const Navbar = () => {
               <FaUserCircle className="text-3xl text-accent" />
             )}
           </div>
+        <div className="hidden md:flex items-center space-x-4">
           {user ? (
             <Button name={"Logout"} onClick={handleLogout}></Button>
           ) : (
@@ -86,6 +84,7 @@ const Navbar = () => {
             {menuOpen ? <FaTimes className="text-2xl text-gray-700" /> : <FaBars className="text-2xl text-gray-700" />}
           </button>
         </div>
+          </div>
       </div>
 
       {/* Mobile Menu */}
