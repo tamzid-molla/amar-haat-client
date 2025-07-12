@@ -1,5 +1,4 @@
-import axios from "axios";
-import useAuth from "../../../hooks/firebase/useAuth";
+
 import { getPhotoURL } from "../../../utils/shareUtils/ShareUtils";
 import AddProductForm from "../../forms/AddProductForm";
 import Swal from "sweetalert2";
@@ -12,9 +11,9 @@ const AddProducts = () => {
 
   const handleProductSubmit = async (data,reset) => {
     const { image, date, ...product } = data;
-    const formattedDate = date.toISOString().split("T")[0];
+    product.created_at = new Date(date);
     const photo = image[0];
-    product.created_at = formattedDate;
+    console.log(new Date(date).toLocaleDateString());
 
     try {
       setLoader(true)

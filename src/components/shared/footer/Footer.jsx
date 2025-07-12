@@ -4,7 +4,7 @@ import Logo from '../logo/Logo';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-gray-900 text-white mt-28 py-12">
       <div className="w-11/12 mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo and Website Name */}
