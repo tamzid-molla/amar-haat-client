@@ -1,0 +1,31 @@
+import { FaHome, FaPlusCircle, FaSignOutAlt, FaUserCircle } from "react-icons/fa";
+import { MdSpaceDashboard } from "react-icons/md";
+import NavLinks from "../../shared/navLinks/NavLinks";
+
+const Sidebar = ({ isOpen, toggleSidebar }) => {
+  return (
+    <aside
+      className={`bg-gray-100 p-4 w-64 h-full fixed md:static top-0 left-0 z-40 transform ${
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      } md:translate-x-0 transition-transform duration-300 ease-in-out`}>
+      <div className="flex flex-col gap-4 h-full">
+        <button className="md:hidden self-end mb-4 text-xl" onClick={toggleSidebar}>
+          ✖
+        </button>
+        <div className="flex flex-col justify-between h-full">
+          <ul className="space-y-2">
+            <NavLinks path={"/dashboard"} name={"Dashboard"} icon={MdSpaceDashboard} />
+            <NavLinks path={"/addProducts"} name={"Add Product"} icon={FaPlusCircle} />
+          </ul>
+          <ul className="border-t pt-2 space-y-2">
+            <NavLinks path={"/profile"} name={"Profile"} icon={FaUserCircle} />
+            <NavLinks path={"/"} name={"Back Home"} icon={FaHome} />
+            <NavLinks path={"/"} name={"Logout"} icon={FaSignOutAlt} />
+          </ul>
+        </div>
+      </div>
+    </aside>
+  );
+};
+
+export default Sidebar;
