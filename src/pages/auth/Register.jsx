@@ -25,6 +25,7 @@ const Register = () => {
     const photo = e.target.photo.files[0];
     const password = e.target.password.value;
     const confirmPassword = e.target.confirm_password.value;
+    console.log(photo);
 
     //Generate Photo URL
     const imageURL = await getPhotoURL(photo);

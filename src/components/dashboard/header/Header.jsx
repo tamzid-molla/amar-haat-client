@@ -3,7 +3,7 @@ import Logo from "../../shared/logo/Logo";
 
 const Header = ({ toggleSidebar }) => {
   return (
-    <header className="flex items-center justify-between px-4 py-3 bg-white shadow-md sticky top-0 z-50">
+    <header className="flex items-center justify-between px-4 py-3 bg-bgSecondary shadow-md sticky top-0 z-50">
       <div className="flex items-center gap-2">
         <Logo></Logo>
       </div>
