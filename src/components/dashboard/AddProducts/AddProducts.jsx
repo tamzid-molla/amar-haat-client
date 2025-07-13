@@ -10,10 +10,11 @@ const AddProducts = () => {
   const axiosSecure = useAxiosSecure();
 
   const handleProductSubmit = async (data,reset) => {
-    const { image, date, ...product } = data;
+    const { image, date,pricePerUnit, ...product } = data;
     product.created_at = new Date(date);
     const photo = image[0];
-    console.log(new Date(date).toLocaleDateString());
+    product.pricePerUnit = parseFloat(pricePerUnit);
+    console.log(product);
 
     try {
       setLoader(true)
