@@ -11,7 +11,7 @@ import useAuth from "../../hooks/firebase/useAuth";
 import Swal from "sweetalert2";
 
 const Register = () => {
-  const { setUser, registerWithEmailPass, updateUser, user } = useAuth();
+  const { setUser, registerWithEmailPass, updateUser,logOutUser, user } = useAuth();
   const [loading, setLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
@@ -47,7 +47,9 @@ const Register = () => {
       };
       // save user Data
       await SaveUserInDb(updatedUser);
-      navigate(location.state || "/");
+      logOutUser().then(() => {
+            navigate("/login");
+          });
     } catch (error) {
       Swal.fire({
         icon: "error",
