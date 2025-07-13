@@ -1,6 +1,6 @@
 // 👇 import at top
 import { useState } from "react";
-import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from "recharts";
+
 import { FaStore, FaCalendarAlt, FaUser, FaStar, FaCartPlus, FaUserCircle } from "react-icons/fa";
 import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
@@ -9,9 +9,13 @@ import PageLoader from "../../components/shared/pageLoader/PageLoader";
 import Reviews from "../../components/home/Review/Reviews";
 import WriteReview from "../../components/forms/WriteReview";
 import PriceChart from "../../components/shared/Charts/PriceChart";
+import useAuth from "../../hooks/firebase/useAuth";
+import WatchList from "../../components/home/ProductDetails/WatchList";
+import ProductPayment from "../../components/home/ProductDetails/ProductPayment";
 
 const ProductDetails = () => {
   const axiosSecure = useAxiosSecure();
+  const { role } = useAuth();
   const { id } = useParams();
   const { data: product = {}, isLoading } = useQuery({
     queryKey: ["product details", id],
@@ -22,7 +26,6 @@ const ProductDetails = () => {
   });
 
   const [activeTab, setActiveTab] = useState("view");
-
   const {
     market,
     marketDescription,
@@ -36,7 +39,6 @@ const ProductDetails = () => {
     created_at,
   } = product;
 
-  console.log(product);
 
   if (isLoading) return <PageLoader />;
 
@@ -81,14 +83,8 @@ const ProductDetails = () => {
 
           {/* Buttons */}
           <div className="flex flex-wrap gap-4">
-            <button
-              className="px-5 py-3 rounded-full text-white font-semibold shadow
-                 bg-gray-400 cursor-pointer ">
-              <FaStar className="inline mr-2" /> Add to Watchlist
-            </button>
-            <button className="px-5 py-3 bg-accent cursor-pointer text-white font-semibold rounded-full shadow">
-              <FaCartPlus className="inline mr-2" /> Buy Product
-            </button>
+            <WatchList product={product}></WatchList>
+            <ProductPayment product={product}></ProductPayment>
           </div>
         </div>
       </div>
@@ -109,7 +105,7 @@ const ProductDetails = () => {
           <button
             onClick={() => setActiveTab("price")}
             className={`pb-2 ${activeTab === "price" ? "text-accent border-b-2 border-accent" : "text-gray-500"}`}>
-            ✍️ Compare Price
+            Compare Price
           </button>
         </div>
 

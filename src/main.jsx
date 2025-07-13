@@ -1,5 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 import { RouterProvider } from "react-router";
 import { router } from "./router/Router";
@@ -14,6 +16,16 @@ createRoot(document.getElementById("root")).render(
       <QueryClientProvider client={queryClient}>
         <FirebaseContext>
           <RouterProvider router={router}></RouterProvider>
+            <ToastContainer
+              position="top-right"
+              autoClose={2000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              pauseOnHover
+              draggable
+              theme="light"
+            />
         </FirebaseContext>
       </QueryClientProvider>
     </div>

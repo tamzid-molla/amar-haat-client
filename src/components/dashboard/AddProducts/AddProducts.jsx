@@ -4,41 +4,29 @@ import AddProductForm from "../../forms/AddProductForm";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/axios/useAxiosSecure";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const AddProducts = () => {
   const [ loader, setLoader ] = useState(false);
   const axiosSecure = useAxiosSecure();
 
-  const handleProductSubmit = async (data,reset) => {
-    const { image, date,pricePerUnit, ...product } = data;
+  const handleProductSubmit = async (data, reset) => {
+    const { image, date, pricePerUnit, ...product } = data;
     product.created_at = new Date(date);
     const photo = image[0];
     product.pricePerUnit = parseFloat(pricePerUnit);
-    console.log(product);
 
+    setLoader(true);
     try {
-      setLoader(true)
-        const photoURL = await getPhotoURL(photo)
-        product.product_image = photoURL;
-      const res = await axiosSecure.post("/products",product);
-      console.log(res);;
-        
-
-      Swal.fire({
-        icon: "success",
-        title: "Product submitted successfully!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      reset()
-    } catch (err) {
-      Swal.fire({
-        icon: "error",
-        title: "Failed to submit product.",
-        showConfirmButton: true,
-      });
+      const photoURL = await getPhotoURL(photo);
+      product.product_image = photoURL;
+      await axiosSecure.post("/products", product);
+      toast.success("Product added successfully!");
+      reset();
+    } catch (error) {
+      toast.error(error?.message)
     } finally {
-      setLoader(false)
+      setLoader(false);
     }
   };
 
