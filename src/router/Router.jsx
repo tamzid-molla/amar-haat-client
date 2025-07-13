@@ -8,6 +8,7 @@ import AddProducts from "../components/dashboard/AddProducts/AddProducts";
 import ProductDetails from "../pages/homePages/ProductDetails";
 import AllProducts from "../pages/homePages/AllProducts";
 import PrivateRoute from "../route/PrivateRoute";
+import StripePayment from "../pages/StripePayment/StripePayment";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: "/product/:id",
         element:<PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>
+      },
+      {
+        path: "/payment/:id",
+        element:<PrivateRoute><StripePayment></StripePayment> </PrivateRoute>
       },
       {
         path: "/allProducts",
