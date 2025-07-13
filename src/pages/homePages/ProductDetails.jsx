@@ -29,7 +29,6 @@ const ProductDetails = () => {
   const {
     market,
     marketDescription,
-    vendor_email,
     vendor_name,
     itemName,
     itemDescription,
@@ -110,8 +109,8 @@ const ProductDetails = () => {
         </div>
 
         {/* Tab Content */}
-        {activeTab === "view" && <Reviews />}
-        {activeTab === "write" && <WriteReview />}
+        {activeTab === "view" && <Reviews productId={product?._id}/>}
+        {activeTab === "write" && <WriteReview productId={product?._id}/>}
         {activeTab === "price" && <PriceChart prices={prices} />}
       </div>
     </div>

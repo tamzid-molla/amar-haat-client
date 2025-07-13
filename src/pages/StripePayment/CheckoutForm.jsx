@@ -56,7 +56,7 @@ const CheckoutForm = ({ product }) => {
         date: new Date(),
       };
       await axiosSecure.post("/orders", orderData);
-      navigate("/allProduct");
+      navigate("/allProducts");
     }
     setLoading(false);
   };
