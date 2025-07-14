@@ -48,7 +48,7 @@ const AddProductForm = ({ onSubmit,loader }) => {
           ...data,
           date:selectedDate,
           prices: priceHistory,
-        },reset)
+        },reset,setPriceHistory)
       )}
       className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-4 bg-white rounded-xl shadow">
       {/* Vendor Email */}

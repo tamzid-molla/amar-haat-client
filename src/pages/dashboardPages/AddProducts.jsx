@@ -1,16 +1,15 @@
 
-import { getPhotoURL } from "../../../utils/shareUtils/ShareUtils";
-import AddProductForm from "../../forms/AddProductForm";
-import Swal from "sweetalert2";
-import useAxiosSecure from "../../../hooks/axios/useAxiosSecure";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../../hooks/axios/useAxiosSecure";
+import { getPhotoURL } from "../../utils/shareUtils/ShareUtils";
+import AddProductForm from "../../components/forms/AddProductForm";
 
 const AddProducts = () => {
   const [ loader, setLoader ] = useState(false);
   const axiosSecure = useAxiosSecure();
 
-  const handleProductSubmit = async (data, reset) => {
+  const handleProductSubmit = async (data, reset,setPriceHistory) => {
     const { image, date, pricePerUnit, ...product } = data;
     product.created_at = new Date(date);
     const photo = image[0];
@@ -23,6 +22,7 @@ const AddProducts = () => {
       await axiosSecure.post("/products", product);
       toast.success("Product added successfully!");
       reset();
+      setPriceHistory([]);
     } catch (error) {
       toast.error(error?.message)
     } finally {
@@ -37,6 +37,7 @@ const AddProducts = () => {
         Vendors submit daily price updates for local market items. This helps users track market trends and product
         pricing accurately.
       </p>
+      
       <AddProductForm onSubmit={handleProductSubmit} loader={loader}/>
     </div>
   );

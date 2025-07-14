@@ -4,11 +4,13 @@ import Register from "../pages/auth/Register";
 import Login from "../pages/auth/Login";
 import Home from "../pages/homePages/Home";
 import DashboardLayout from "../layouts/dashboardLayout/DashboardLayout";
-import AddProducts from "../components/dashboard/AddProducts/AddProducts";
+
 import ProductDetails from "../pages/homePages/ProductDetails";
 import AllProducts from "../pages/homePages/AllProducts";
 import PrivateRoute from "../route/PrivateRoute";
 import StripePayment from "../pages/StripePayment/StripePayment";
+import PriceTrends from "../pages/dashboardPages/PriceTrends";
+import AddProducts from "../pages/dashboardPages/AddProducts";
 
 export const router = createBrowserRouter([
   {
@@ -48,7 +50,11 @@ export const router = createBrowserRouter([
       {
         path: "addProducts",
         element: <AddProducts></AddProducts>
-      }
+      },
+      {
+        path: "priceTrends",
+        element: <PriceTrends></PriceTrends>
+      },
     ]
   }
 ]);
