@@ -3,17 +3,17 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/axios/useAxiosSecure";
 import useAuth from "../../hooks/firebase/useAuth";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import PageLoader from "../../components/shared/pageLoader/PageLoader";
 import NoDataFound from "../../components/shared/NoDataFound/NoDataFound";
 import Swal from "sweetalert2";
+import UpdateAdvertisementModal from "../../components/modal/UpdateAdvertisementModal";
 
 const MyAdvertise = () => {
   const { user } = useAuth();
+  const [selectedAd, setSelectedAd] = useState(null);
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
   const [deletingId, setDeletingId] = useState(null);
 
   const { data: ads = [], isLoading } = useQuery({
@@ -77,17 +77,13 @@ const MyAdvertise = () => {
                 <td className="p-3 text-gray-600">{ad.description}</td>
                 <td className="p-3 capitalize">{ad.status || "pending"}</td>
                 <td className="p-3 space-x-2">
-                  <button
-                    onClick={() => navigate(`/dashboard/updateAdvertisement/${ad._id}`)}
-                    className="bg-accent text-white px-3 py-1 rounded"
-                  >
+                  <button onClick={() => setSelectedAd(ad)} className="bg-accent text-white px-3 py-1 rounded">
                     <FaEdit className="inline" /> Update
                   </button>
                   <button
                     onClick={() => handleDelete(ad._id)}
                     className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
-                    disabled={deleteMutation.isLoading && deletingId === ad._id}
-                  >
+                    disabled={deleteMutation.isLoading && deletingId === ad._id}>
                     <FaTrash className="inline" /> Delete
                   </button>
                 </td>
@@ -96,6 +92,14 @@ const MyAdvertise = () => {
           </tbody>
         </table>
       </div>
+      {selectedAd && (
+        <UpdateAdvertisementModal
+          isOpen={!!selectedAd}
+          ad={selectedAd}
+          onClose={() => setSelectedAd(null)}
+          refetch={() => queryClient.invalidateQueries(["my-ads"])}
+        />
+      )}
     </div>
   );
 };
