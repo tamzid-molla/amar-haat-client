@@ -25,7 +25,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <NavLinks path={"/dashboard"} name={"Dashboard"} icon={MdSpaceDashboard} />
             <NavLinks path={"/dashboard/addProducts"} name={"Add Product"} icon={FaPlusCircle} />
             <NavLinks path={"/dashboard/priceTrends"} name={"Price Trends"} icon={FaChartLine} />
-            <NavLinks path={"/dashboard/watchlist"} name={"Watchlist"} icon={FaClipboardList} />
+            <NavLinks path={"/dashboard/watchList"} name={"Watchlist"} icon={FaClipboardList} />
             <NavLinks path={"/dashboard/myOrders"} name={"My Order"} icon={FaShoppingCart} />
           </ul>
           <ul className="border-t pt-2 space-y-2">

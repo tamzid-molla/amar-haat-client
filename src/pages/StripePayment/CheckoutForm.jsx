@@ -49,6 +49,8 @@ const CheckoutForm = ({ product }) => {
 
       // Save Order to Database
       const orderData = {
+        productName: product?.itemName,
+        marketName:product?.market,
         productId: product._id,
         buyerEmail: user.email,
         price: product.pricePerUnit,

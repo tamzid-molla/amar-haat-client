@@ -11,6 +11,8 @@ import PrivateRoute from "../route/PrivateRoute";
 import StripePayment from "../pages/StripePayment/StripePayment";
 import PriceTrends from "../pages/dashboardPages/PriceTrends";
 import AddProducts from "../pages/dashboardPages/AddProducts";
+import MyWatchList from "../pages/dashboardPages/MyWatchList";
+import MyOrders from "../pages/dashboardPages/MyOrders";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +56,14 @@ export const router = createBrowserRouter([
       {
         path: "priceTrends",
         element: <PriceTrends></PriceTrends>
+      },
+      {
+        path: "watchList",
+        element: <MyWatchList></MyWatchList>
+      },
+      {
+        path: "myOrders",
+        element: <MyOrders></MyOrders>
       },
     ]
   }
