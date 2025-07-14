@@ -13,6 +13,7 @@ import PriceTrends from "../pages/dashboardPages/PriceTrends";
 import AddProducts from "../pages/dashboardPages/AddProducts";
 import MyWatchList from "../pages/dashboardPages/MyWatchList";
 import MyOrders from "../pages/dashboardPages/MyOrders";
+import AddAdvertisement from "../pages/dashboardPages/AddAdvertisement";
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
       {
         path: "myOrders",
         element: <MyOrders></MyOrders>
+      },
+      {
+        path: "addAdvertisement",
+        element: <AddAdvertisement></AddAdvertisement>
       },
     ]
   }

@@ -6,6 +6,9 @@ import {
   FaChartLine,
   FaClipboardList,
   FaShoppingCart,
+  FaBoxOpen,
+  FaBullhorn,
+  FaChartBar
 } from "react-icons/fa";
 import { MdSpaceDashboard } from "react-icons/md";
 import NavLinks from "../../shared/navLinks/NavLinks";
@@ -27,6 +30,9 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <NavLinks path={"/dashboard/priceTrends"} name={"Price Trends"} icon={FaChartLine} />
             <NavLinks path={"/dashboard/watchList"} name={"Watchlist"} icon={FaClipboardList} />
             <NavLinks path={"/dashboard/myOrders"} name={"My Order"} icon={FaShoppingCart} />
+            <NavLinks path="/dashboard/myProducts" name="My Products" icon={FaBoxOpen} />
+            <NavLinks path="/dashboard/addAdvertisement" name="Add Advertisement" icon={FaBullhorn} />
+            <NavLinks path="/dashboard/myAdvertisements" name="My Advertisements" icon={FaChartBar} />
           </ul>
           <ul className="border-t pt-2 space-y-2">
             <NavLinks path={"/profile"} name={"Profile"} icon={FaUserCircle} />
