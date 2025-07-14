@@ -16,6 +16,7 @@ import MyOrders from "../pages/dashboardPages/MyOrders";
 import AddAdvertisement from "../pages/dashboardPages/AddAdvertisement";
 import MyProducts from "../pages/dashboardPages/MyProducts";
 import UpdateProduct from "../pages/dashboardPages/UpdateProduct";
+import MyAdvertise from "../pages/dashboardPages/MyAdvertise";
 
 export const router = createBrowserRouter([
   {
@@ -79,6 +80,10 @@ export const router = createBrowserRouter([
       {
         path: "update_product/:id",
         element: <UpdateProduct></UpdateProduct>
+      },
+      {
+        path: "myAdvertisements",
+        element: <MyAdvertise></MyAdvertise>
       },
     ]
   }
