@@ -185,14 +185,13 @@ const AddProductForm = ({ onSubmit,loader }) => {
             name="date"
             max={new Date().toISOString().split("T")[0]}
             className="border border-gray-300 rounded-lg px-3 py-2 w-full sm:w-1/3 focus:outline-none focus:border-accent transition-all"
-            required
           />
           <input
             type="number"
             name="price"
             placeholder="৳"
             className="border border-gray-300 rounded-lg px-3 py-2 w-full sm:w-1/3 focus:outline-none focus:border-accent transition-all"
-            required
+            
           />
           <button type="button" onClick={addPriceHistory} className="btn btn-accent w-full sm:w-auto">
             Add

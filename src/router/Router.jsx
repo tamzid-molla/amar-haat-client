@@ -17,6 +17,7 @@ import AddAdvertisement from "../pages/dashboardPages/AddAdvertisement";
 import MyProducts from "../pages/dashboardPages/MyProducts";
 import UpdateProduct from "../pages/dashboardPages/UpdateProduct";
 import MyAdvertise from "../pages/dashboardPages/MyAdvertise";
+import AllUser from "../pages/AdminPages/AllUser";
 
 
 export const router = createBrowserRouter([
@@ -86,10 +87,11 @@ export const router = createBrowserRouter([
         path: "myAdvertisements",
         element: <MyAdvertise></MyAdvertise>
       },
-      // {
-      //   path: "updateAdvertisement/:id",
-      //   element: <UpdateAdvertise></UpdateAdvertise>
-      // },
+      {
+        path: "allUsers",
+        element: <AllUser></AllUser>
+      },
+      
     ]
   }
 ]);
