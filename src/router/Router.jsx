@@ -18,6 +18,7 @@ import MyProducts from "../pages/dashboardPages/MyProducts";
 import UpdateProduct from "../pages/dashboardPages/UpdateProduct";
 import MyAdvertise from "../pages/dashboardPages/MyAdvertise";
 import AllUser from "../pages/AdminPages/AllUser";
+import Products from "../pages/AdminPages/Products";
 
 
 export const router = createBrowserRouter([
@@ -90,6 +91,10 @@ export const router = createBrowserRouter([
       {
         path: "allUsers",
         element: <AllUser></AllUser>
+      },
+      {
+        path: "allProducts",
+        element: <Products></Products>
       },
       
     ]
