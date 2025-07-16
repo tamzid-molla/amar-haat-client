@@ -4,6 +4,9 @@ import TopProducts from '../../components/home/topProducts/TopProducts';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import PageLoader from '../../components/shared/pageLoader/PageLoader';
+import HighlightsAdd from './HighlightsAdd';
+import HowItWorks from './HowItWorks';
+import WhyChooseUs from '../../components/home/WhyChooseUs/WhyChooseUs';
 
 const Home = () => {
     const {data:products =[],isLoading, } = useQuery({
@@ -13,7 +16,6 @@ const Home = () => {
             return res.data
         },
     })
-    console.log(products);
 
     if(isLoading) return <PageLoader></PageLoader>
 
@@ -21,6 +23,9 @@ const Home = () => {
         <div>
             <Hero></Hero>
             <TopProducts products={products}></TopProducts>
+            <HighlightsAdd></HighlightsAdd>
+            <HowItWorks></HowItWorks>
+            <WhyChooseUs></WhyChooseUs>
         </div>
     );
 };

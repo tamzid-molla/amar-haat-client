@@ -63,11 +63,11 @@ const ProductDetails = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-800 text-lg font-medium">
             <p>
-              <FaStore className="inline text-indigo-600 mr-2" />
+              <FaStore className="inline text-accent mr-2" />
               Market: {market}
             </p>
             <p>
-              <FaCalendarAlt className="inline text-indigo-600 mr-2" />
+              <FaCalendarAlt className="inline text-accent mr-2" />
               Date: {new Date(created_at).toLocaleDateString()}
             </p>
             <p>
@@ -75,7 +75,7 @@ const ProductDetails = () => {
               Price: <span className="text-green-600 font-bold">৳{pricePerUnit}/kg</span>
             </p>
             <p>
-              <FaUser className="inline text-indigo-600 mr-2" />
+              <FaUser className="inline text-accent mr-2" />
               Vendor: {vendor_name}
             </p>
           </div>
@@ -110,7 +110,7 @@ const ProductDetails = () => {
 
         {/* Tab Content */}
         {activeTab === "view" && <Reviews productId={product?._id}/>}
-        {activeTab === "write" && <WriteReview productId={product?._id}/>}
+        {activeTab === "write" && <WriteReview product={product}/>}
         {activeTab === "price" && <PriceChart prices={prices} />}
       </div>
     </div>

@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/axios/useAxiosSecure";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/firebase/useAuth";
 import { useNavigate } from "react-router";
+import LoaderSVG from "../../components/shared/loaderSVG/LoaderSVG";
 
 const CheckoutForm = ({ product }) => {
   const stripe = useStripe();
@@ -45,7 +46,7 @@ const CheckoutForm = ({ product }) => {
     if (confirmError) {
       toast.error(confirmError.message);
     } else {
-      toast.success("✅ Payment Successful!");
+      toast.success("Payment Successful!");
 
       // Save Order to Database
       const orderData = {
@@ -66,8 +67,8 @@ const CheckoutForm = ({ product }) => {
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
       <CardElement className="border p-3 rounded-md shadow-sm" />
-      <button disabled={!stripe || loading} className="bg-accent text-white px-4 py-2 rounded-md shadow">
-        {loading ? "Processing..." : "Pay Now"}
+      <button disabled={!stripe || loading} className="bg-accent cursor-pointer text-white px-4 py-2 rounded-md shadow">
+        {loading ? <LoaderSVG message={"Processing..."}></LoaderSVG> : "Pay Now"}
       </button>
     </form>
   );

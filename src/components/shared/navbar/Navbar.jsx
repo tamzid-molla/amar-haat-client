@@ -12,7 +12,6 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, logOutUser } = useAuth();
   const navigate = useNavigate();
-  console.log(user);
 
   //Logout user
   const handleLogout = async () => {

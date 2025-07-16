@@ -25,7 +25,7 @@ const Reviews = ({ productId }) => {
         {reviews.map((r) => (
           <li key={r._id} className="border-b pb-4 last:border-none flex gap-4">
             <img
-              src={r.userPhot || "https://i.ibb.co/sdN75HdP/vector-flat-illustration-grayscale-avatar-600nw-2264922221.webp"}
+              src={r.userPhoto || "https://i.ibb.co/sdN75HdP/vector-flat-illustration-grayscale-avatar-600nw-2264922221.webp"}
               alt={r.userName}
               className="w-14 h-14 rounded-full object-cover border"
             />

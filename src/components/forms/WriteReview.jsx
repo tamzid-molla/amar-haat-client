@@ -5,7 +5,7 @@ import useAuth from "../../hooks/firebase/useAuth";
 import useAxiosSecure from "../../hooks/axios/useAxiosSecure";
 import LoaderSVG from "../shared/loaderSVG/LoaderSVG";
 
-const WriteReview = ({ productId }) => {
+const WriteReview = ({ product }) => {
   const { user, role } = useAuth();
   const axiosSecure = useAxiosSecure();
 
@@ -22,7 +22,9 @@ const WriteReview = ({ productId }) => {
     }
 
     const reviewData = {
-      productId,
+      productId: product?._id,
+      product_Name:product?.itemName,
+      product_image:product?.product_image,
       userName: user?.displayName || "Anonymous",
       userEmail: user?.email,
       userPhot: user?.photoURL,
@@ -101,7 +103,7 @@ const WriteReview = ({ productId }) => {
           }`}
         >
           {loading ? (
-            <LoaderSVG></LoaderSVG>
+           <LoaderSVG message={"Posting Review..."}></LoaderSVG> 
           ) : (
             "Submit Review"
           )}

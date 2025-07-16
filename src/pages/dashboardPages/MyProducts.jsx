@@ -55,7 +55,7 @@ const MyProducts = () => {
   };
 
   if (isLoading) return <PageLoader />;
-  if (products.length === 0) return <NoDataFound message="You have not added any products yet." />;
+  if (products.length === 0) return <NoDataFound path={"/dashboard/addProducts"} name={"Add Product"} message="You have not added any products yet." />;
 
   return (
     <div className="bg-white shadow-md rounded-xl p-6">

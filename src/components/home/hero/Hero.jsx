@@ -1,4 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Link } from "react-router";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -55,9 +56,11 @@ const Hero = () => {
               <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-4">
                 <h2 className="text-3xl md:text-5xl font-bold mb-2">{slide.title}</h2>
                 <p className="text-sm md:text-lg mb-4">{slide.subtitle}</p>
+                <Link to="/allProducts">
                 <button className="bg-accent px-5 py-2 rounded-xl hover:bg-accent/90 transition font-medium">
                   Shop Now
                 </button>
+                </Link>
               </div>
             </div>
           </SwiperSlide>

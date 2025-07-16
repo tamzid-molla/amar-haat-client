@@ -7,7 +7,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 
-const stripePromise = loadStripe(import.meta.env.VITE_Stripe_Public_Key)
+const stripePromise = loadStripe(import.meta.env.VITE_Stripe_Public_Key);
 
 const StripePayment = () => {
   const { id } = useParams();
@@ -21,13 +21,13 @@ const StripePayment = () => {
     },
   });
   if (isLoading) return <PageLoader></PageLoader>;
-  console.log(product);
+
   return (
     <div className="min-h-screen flex justify-center items-center p-6">
       <div className="max-w-xl w-full bg-white p-8 rounded-xl shadow-lg">
         <h2 className="text-2xl font-bold mb-6 text-accent">💳 Complete Your Payment</h2>
-              <Elements stripe={stripePromise}>
-                  <CheckoutForm product={product}></CheckoutForm>
+        <Elements stripe={stripePromise}>
+          <CheckoutForm product={product}></CheckoutForm>
         </Elements>
       </div>
     </div>

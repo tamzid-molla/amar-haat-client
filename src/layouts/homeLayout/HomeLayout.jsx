@@ -5,6 +5,7 @@ import useAuth from '../../hooks/firebase/useAuth';
 import PageLoader from '../../components/shared/pageLoader/PageLoader';
 import Footer from '../../components/shared/footer/Footer';
 
+
 const HomeLayout = () => {
     const { loading } = useAuth();
 

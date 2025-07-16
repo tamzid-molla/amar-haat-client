@@ -55,7 +55,7 @@ const MyAdvertise = () => {
   };
 
   if (isLoading) return <PageLoader />;
-  if (ads.length === 0) return <NoDataFound message="No advertisements found." />;
+  if (ads.length === 0) return <NoDataFound path={"/dashboard/addAdvertisement"} name={"Add Advertise"} message="No advertisements found." />;
 
   return (
     <div className="bg-white shadow-md rounded-xl p-6">

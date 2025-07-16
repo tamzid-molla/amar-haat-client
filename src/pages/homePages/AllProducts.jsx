@@ -116,13 +116,13 @@ const AllProducts = () => {
               </p>
 
               <button
-                className="w-full mt-2 px-4 py-2 bg-accent text-white rounded-lg font-medium hover:bg-opacity-90"
+                className="w-full mt-2 cursor-pointer px-4 py-2 bg-accent text-white rounded-lg font-medium hover:bg-opacity-90"
                 onClick={() => {
                   if (!user) navigate("/login");
                   else navigate(`/product/${product._id}`);
                 }}
               >
-                🔍 View Details
+                 View Details
               </button>
             </div>
           ))}
