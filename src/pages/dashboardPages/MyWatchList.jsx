@@ -79,13 +79,13 @@ const MyWatchList = () => {
                 <td className="p-3">{new Date(item.addedAt).toLocaleDateString()}</td>
                 <td className="p-3 space-x-2">
                   <button
-                    onClick={() => navigate("/dashboard/addProducts")}
-                    className="bg-accent text-white px-3 py-1 rounded">
+                    onClick={() => navigate("/allProducts")}
+                    className="bg-accent text-white px-3 py-1 cursor-pointer rounded">
                     <FaPlus className="inline"></FaPlus> Add More
                   </button>
                   <button
                     onClick={() => handleDelete(item._id)}
-                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+                    className="bg-red-500 hover:bg-red-600 text-white cursor-pointer px-3 py-1 rounded"
                     disabled={mutation.isLoading && deletingId === item._id}>
                     <FaTrashAlt className="inline" /> Remove
                   </button>

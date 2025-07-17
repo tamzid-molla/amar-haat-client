@@ -21,7 +21,7 @@ export const FirebaseContext = ({ children }) => {
   //Loading state
   const [loading, setLoading] = useState(true);
 
-  const { data: userRole = {} } = useQuery({
+  const { data: userRole = {}, isPending } = useQuery({
     queryKey: ["dbUser", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -79,7 +79,8 @@ export const FirebaseContext = ({ children }) => {
     updateUser,
     logOutUser,
       googleLogin,
-      role: userRole?.role,
+    role: userRole?.role,
+      isPending,
     
   };
 

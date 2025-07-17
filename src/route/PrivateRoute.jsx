@@ -4,9 +4,9 @@ import useAuth from '../hooks/firebase/useAuth';
 
 const PrivateRoute = ({ children }) => {
   const location = useLocation();
-    const { user } = useAuth()
+    const { user,loading } = useAuth()
 
-    if (!user) {
+    if (!user && !loading) {
         return <Navigate to='/login' state={location?.pathname}></Navigate>
     }
     return (

@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router";
 import useAuth from "../../../hooks/firebase/useAuth";
 import Swal from "sweetalert2";
 import Logo from "../logo/Logo";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,22 +18,10 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await logOutUser();
-      Swal.fire({
-        icon: "success",
-        title: "Logged out!",
-        text: "You have been logged out successfully.",
-        timer: 1500,
-        showConfirmButton: false,
-      });
+      toast.success("You have been logged out successfully.")
       navigate("/");
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Logout Failed",
-        text: error.message || "An error occurred during logout.",
-        timer: 2000,
-        showConfirmButton: false,
-      });
+      toast.error(error.message || "An error occurred during logout.")
     }
   };
   const links = (
@@ -56,6 +45,7 @@ const Navbar = () => {
         <ul className="hidden md:flex space-x-6">{links}</ul>
         {/* Auth related */}
         <div className="flex gap-5 items-center">
+          <Link to="/dashboard/profile">
           <div className="flex items-center space-x-2">
             {user?.photoURL ? (
               <img
@@ -72,13 +62,19 @@ const Navbar = () => {
               <FaUserCircle className="text-3xl text-accent" />
             )}
           </div>
+          </Link>
         <div className="hidden md:flex items-center space-x-4">
           {user ? (
             <Button name={"Logout"} onClick={handleLogout}></Button>
-          ) : (
-            <Link to="/login">
-              <Button name={"Login / Register"}></Button>
+            ) : (
+                <>
+            <Link to="/register">
+              <Button name={"Register"}></Button>
             </Link>
+            <Link to="/login">
+              <Button name={"Login"}></Button>
+            </Link>
+                </>
           )}
         </div>
         {/* Hamburger for Mobile */}

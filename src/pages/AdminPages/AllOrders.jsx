@@ -14,7 +14,6 @@ const AllOrders = () => {
       return res.data;
     },
   });
-    console.log(orders);
 
   if (isLoading) return <PageLoader />;
   if (orders.length === 0) return <NoDataFound message="No orders found." />;

@@ -21,6 +21,11 @@ import AllUser from "../pages/AdminPages/AllUser";
 import Products from "../pages/AdminPages/Products";
 import AllAdvertise from "../pages/AdminPages/AllAdvertise";
 import AllOrders from "../pages/AdminPages/AllOrders";
+import Profile from "../pages/Profile/Profile";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import AdminRoute from "../route/AdminRoute";
+import VendorRoute from "../route/VendorRoute";
+import AdminAndVendorRoute from "../route/AdminAndVendorRoute";
 
 
 export const router = createBrowserRouter([
@@ -56,57 +61,64 @@ export const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <DashboardLayout></DashboardLayout>,
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
     children: [
       {
         path: "addProducts",
-        element: <AddProducts></AddProducts>
+        element: <VendorRoute><AddProducts></AddProducts></VendorRoute>
       },
       {
         path: "priceTrends",
-        element: <PriceTrends></PriceTrends>
+        element: <PrivateRoute><PriceTrends></PriceTrends></PrivateRoute>
       },
       {
         path: "watchList",
-        element: <MyWatchList></MyWatchList>
+        element: <PrivateRoute><MyWatchList></MyWatchList></PrivateRoute>
       },
       {
         path: "myOrders",
-        element: <MyOrders></MyOrders>
+        element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>
       },
       {
         path: "addAdvertisement",
-        element: <AddAdvertisement></AddAdvertisement>
+        element: <VendorRoute><AddAdvertisement></AddAdvertisement></VendorRoute>
       },
       {
         path: "myProducts",
-        element: <MyProducts></MyProducts>
+        element: <VendorRoute><MyProducts></MyProducts></VendorRoute>
       },
       {
         path: "update_product/:id",
-        element: <UpdateProduct></UpdateProduct>
+        element: <AdminAndVendorRoute><UpdateProduct></UpdateProduct></AdminAndVendorRoute>
       },
       {
         path: "myAdvertisements",
-        element: <MyAdvertise></MyAdvertise>
+        element: <VendorRoute><MyAdvertise></MyAdvertise></VendorRoute>
       },
       {
         path: "allUsers",
-        element: <AllUser></AllUser>
+        element:<AdminRoute> <AllUser></AllUser></AdminRoute>
       },
       {
         path: "allProducts",
-        element: <Products></Products>
+        element: <AdminRoute><Products></Products></AdminRoute>
       },
       {
         path: "allAdvertisements",
-        element: <AllAdvertise></AllAdvertise>
+        element: <AdminRoute><AllAdvertise></AllAdvertise></AdminRoute>
       },
       {
         path: "allOrders",
-        element: <AllOrders></AllOrders>
+        element: <AdminRoute><AllOrders></AllOrders></AdminRoute> 
       },
-      
+      {
+        path: "profile",
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>
+      },
     ]
+  },
+  {
+    path: "*",
+    element: <ErrorPage></ErrorPage>
   }
 ]);

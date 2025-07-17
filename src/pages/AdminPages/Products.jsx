@@ -128,24 +128,24 @@ const Products = () => {
                     <>
                       <button
                         onClick={() => approveMutation.mutate(product?._id)}
-                        className="bg-accent text-white px-2 py-1 rounded">
+                        className="bg-accent cursor-pointer text-white px-2 py-1 rounded">
                         <FaCheck />
                       </button>
                       <button
                         onClick={() => handleReject(product?._id)}
-                        className="bg-yellow-500 text-white px-2 py-1 rounded">
+                        className="bg-yellow-500 cursor-pointer text-white px-2 py-1 rounded">
                         <FaTimes />
                       </button>
                     </>
                   )}
                   <button
                     onClick={() => navigate(`/dashboard/update_product/${product?._id}`)}
-                    className="bg-blue-500 text-white px-2 py-1 rounded">
+                    className="bg-blue-500 cursor-pointer text-white px-2 py-1 rounded">
                     <FaEdit />
                   </button>
                   <button
                     onClick={() => handleDelete(product?._id)}
-                    className="bg-red-500 text-white px-2 py-1 rounded">
+                    className="bg-red-500 cursor-pointer text-white px-2 py-1 rounded">
                     <FaTrash />
                   </button>
                 </td>
