@@ -15,28 +15,31 @@ import NavLinks from "../../shared/navLinks/NavLinks";
 import useAuth from "../../../hooks/firebase/useAuth";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
-  const { logOutUser,role } = useAuth();
+  const { logOutUser, role } = useAuth();
+  const navigate = useNavigate();
+
   const handleLogout = () => {
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You won’t be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonText: "Yes, logout!",
-  }).then(async (result) => {
-    if (result.isConfirmed) {
-      try {
-        await logOutUser();
-        toast.success("You have been logged out successfully.");
-      } catch (error) {
-        toast.error(error.message || "An error occurred during logout.");
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won’t be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, logout!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+           logOutUser();
+          navigate("/");
+          toast.success("You have been logged out successfully.");
+        } catch (error) {
+          toast.error(error.message || "An error occurred during logout.");
+        }
       }
-    }
-  });
-};
+    });
+  };
   return (
     <aside
       className={`bg-bgSecondary p-4 w-64 h-full overflow-y-auto fixed md:static top-0 left-0 z-40 transform ${
@@ -49,40 +52,36 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <div className="flex flex-col justify-between h-full">
           <ul className="space-y-2">
             <NavLinks path={"/dashboard"} name={"Dashboard"} icon={MdSpaceDashboard} />
-            {
-              role === "user" && 
+            {role === "user" && (
               <>
-              <NavLinks path={"/dashboard/priceTrends"} name={"Price Trends"} icon={FaChartLine} />
-              <NavLinks path={"/dashboard/watchList"} name={"Watchlist"} icon={FaClipboardList} />
-              <NavLinks path={"/dashboard/myOrders"} name={"My Order"} icon={FaShoppingCart} />
+                <NavLinks path={"/dashboard/priceTrends"} name={"Price Trends"} icon={FaChartLine} />
+                <NavLinks path={"/dashboard/watchList"} name={"Watchlist"} icon={FaClipboardList} />
+                <NavLinks path={"/dashboard/myOrders"} name={"My Order"} icon={FaShoppingCart} />
               </>
-            }
-            {
-              role === "vendor" &&
+            )}
+            {role === "vendor" && (
               <>
-              <NavLinks path="/dashboard/myProducts" name="My Products" icon={FaBoxOpen} />
-              <NavLinks path={"/dashboard/addProducts"} name={"Add Product"} icon={FaPlusCircle} />
-              <NavLinks path="/dashboard/addAdvertisement" name="Add Advertisement" icon={FaBullhorn} />
-              <NavLinks path="/dashboard/myAdvertisements" name="My Advertisements" icon={FaChartBar} />
+                <NavLinks path="/dashboard/myProducts" name="My Products" icon={FaBoxOpen} />
+                <NavLinks path={"/dashboard/addProducts"} name={"Add Product"} icon={FaPlusCircle} />
+                <NavLinks path="/dashboard/addAdvertisement" name="Add Advertisement" icon={FaBullhorn} />
+                <NavLinks path="/dashboard/myAdvertisements" name="My Advertisements" icon={FaChartBar} />
               </>
-            }
-            {
-              role === "admin" && 
+            )}
+            {role === "admin" && (
               <>
-              <NavLinks path="/dashboard/allUsers" name="All Users" icon={FaClipboardList} />
-              <NavLinks path="/dashboard/allProducts" name="All Product" icon={FaBoxOpen} />
-              <NavLinks path="/dashboard/allAdvertisements" name="All Advertisement" icon={FaBullhorn} />
-              <NavLinks path="/dashboard/allOrders" name="All Order" icon={FaShoppingCart} />
+                <NavLinks path="/dashboard/allUsers" name="All Users" icon={FaClipboardList} />
+                <NavLinks path="/dashboard/allProducts" name="All Product" icon={FaBoxOpen} />
+                <NavLinks path="/dashboard/allAdvertisements" name="All Advertisement" icon={FaBullhorn} />
+                <NavLinks path="/dashboard/allOrders" name="All Order" icon={FaShoppingCart} />
               </>
-            }
+            )}
           </ul>
           <ul className="border-t pt-2 space-y-2">
             <NavLinks path={"/"} name={"Back Home"} icon={FaHome} />
             <NavLinks path={"/dashboard/profile"} name={"Profile"} icon={FaUserCircle} />
             <button onClick={handleLogout} className="flex items-center gap-1 cursor-pointer text-textSecondary">
-            <FaSignOutAlt/> Logout
+              <FaSignOutAlt /> Logout
             </button>
-            {/* <NavLinks name={"Logout"} icon={FaSignOutAlt} functional={handleLogout}/> */}
           </ul>
         </div>
       </div>
