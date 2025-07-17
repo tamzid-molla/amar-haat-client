@@ -44,7 +44,7 @@ const AllUser = () => {
     <div className="bg-bgSecondary shadow-md rounded-xl p-6">
       <h2 className="text-2xl font-bold mb-4">👥 All Users</h2>
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto text-sm">
+        <table className="w-full min-w-[550px] table-auto text-sm">
           <thead className="bg-gray-100">
             <tr>
               <th className="p-3 text-left">Name</th>

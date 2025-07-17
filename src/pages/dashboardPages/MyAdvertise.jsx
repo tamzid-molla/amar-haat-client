@@ -58,14 +58,13 @@ const MyAdvertise = () => {
   if (ads.length === 0) return <NoDataFound path={"/dashboard/addAdvertisement"} name={"Add Advertise"} message="No advertisements found." />;
 
   return (
-    <div className="bg-white shadow-md rounded-xl p-6">
+    <div className="bg-white shadow-md rounded-xl overflow-x-auto p-6">
       <h2 className="text-2xl font-bold mb-4">📢 My Advertisements</h2>
-      <div className="overflow-x-auto">
-        <table className="min-w-full table-auto text-sm">
+      <div className="">
+        <table className="w-full min-w-[600px] table-auto text-sm">
           <thead className="bg-gray-100">
             <tr>
               <th className="p-3 text-left">Title</th>
-              <th className="p-3 text-left">Description</th>
               <th className="p-3 text-left">Status</th>
               <th className="p-3 text-left">Actions</th>
             </tr>
@@ -74,7 +73,6 @@ const MyAdvertise = () => {
             {ads.map((ad) => (
               <tr key={ad._id} className="border-b">
                 <td className="p-3 font-medium">{ad.title}</td>
-                <td className="p-3 text-gray-600">{ad.description}</td>
                 <td className="p-3 capitalize">{ad.status || "pending"}</td>
                 <td className="p-3 space-x-2">
                   <button onClick={() => setSelectedAd(ad)} className="bg-accent text-white px-3 py-1 rounded">

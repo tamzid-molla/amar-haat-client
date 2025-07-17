@@ -22,7 +22,7 @@ const AllOrders = () => {
     <div className="bg-white shadow-md rounded-xl p-6">
       <h2 className="text-2xl font-bold mb-4">🛒 All Orders</h2>
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto text-sm">
+        <table className="w-full min-w-[700px] table-auto text-sm">
           <thead className="bg-gray-100">
             <tr>
               <th className="p-3 text-left">Product</th>

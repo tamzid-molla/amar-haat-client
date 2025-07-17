@@ -10,10 +10,11 @@ const AddProducts = () => {
   const axiosSecure = useAxiosSecure();
 
   const handleProductSubmit = async (data, reset,setPriceHistory) => {
-    const { image, date, pricePerUnit, ...product } = data;
+    const { image, date,itemName, pricePerUnit, ...product } = data;
     product.created_at = new Date(date);
     const photo = image[0];
     product.pricePerUnit = parseFloat(pricePerUnit);
+    product.itemName = itemName.trim();
 
     setLoader(true);
     try {

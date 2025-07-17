@@ -2,6 +2,7 @@ import { FaCartPlus } from "react-icons/fa";
 import useAuth from "../../../hooks/firebase/useAuth";
 import { Link } from "react-router";
 
+
 const ProductPayment = ({ product }) => {
   const { role } = useAuth();
 

@@ -14,7 +14,7 @@ import PageLoader from "../../components/shared/pageLoader/PageLoader";
 import NoDataFound from "../../components/shared/NoDataFound/NoDataFound";
 
 const PriceTrends = () => {
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState({});
   const axiosSecure = useAxiosSecure();
 
   // Load unique item names
@@ -29,8 +29,8 @@ const PriceTrends = () => {
   // Fetch product with all its prices
   const handleItemClick = async (itemName) => {
     try {
-      const res = await axiosSecure.get(`/product_by_itemName/${itemName}`);
-      setSelectedItem(res.data);
+        const res = await axiosSecure.get(`/product_by_itemName/${itemName}`);
+        setSelectedItem(res.data);
     } catch (err) {
       console.error(err);
     }
@@ -43,7 +43,7 @@ const PriceTrends = () => {
 
   const recentPrices = (selectedItem?.prices || []).filter((item) => {
     const itemDate = new Date(item.date);
-    return itemDate >= sevenDaysAgo && itemDate <= today;
+    return itemDate >= sevenDaysAgo ;
   });
 
   // Calculate trend

@@ -64,6 +64,10 @@ const CheckoutForm = ({ product }) => {
     setLoading(false);
   };
 
+   useEffect(() => {
+      document.title = "AmarHaat || Payment";
+    }, []);
+
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
       <CardElement className="border p-3 rounded-md shadow-sm" />

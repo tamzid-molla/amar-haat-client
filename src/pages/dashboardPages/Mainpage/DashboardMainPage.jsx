@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useAuth from '../../../hooks/firebase/useAuth';
 import AdminMainPage from '../../AdminPages/AdminMainPage';
 import VendorMainPage from './VendorMainPage/VendorMainPage';
@@ -6,6 +6,11 @@ import UserMainPage from './UserMainPage/UserMainPage';
 
 const DashboardMainPage = () => {
     const { role } = useAuth();
+
+    useEffect(() => {
+    document.title = "AmarHaat || Dashboard";
+  }, []);
+
     return (
         <div>
             {role === "admin" && <AdminMainPage></AdminMainPage>}

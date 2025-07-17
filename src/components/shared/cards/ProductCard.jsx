@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
       initial={{ opacity: 0, y: 70 }}
       whileInView={{ opacity: 1, y: 0, scale: 1.01 }}
       transition={{ duration: 0.8 }}
-      className="bg-bgSecondary rounded-lg shadow-lg relative p-4 max-w-sm">
+      className="bg-bgSecondary rounded-lg shadow-lg relative p-4 w-full max-w-sm">
       <div className="flex absolute top-4 justify-between items-center mb-2">
         <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded">HOT</span>
       </div>

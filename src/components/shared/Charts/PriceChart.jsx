@@ -21,7 +21,7 @@ const PriceChart = ({ prices }) => {
 
     return prices.filter((item) => {
       const itemDate = new Date(item.date);
-      return itemDate >= start && itemDate <= today;
+      return itemDate >= start
     });
   }, [prices, startDate]);
 
@@ -33,7 +33,7 @@ const PriceChart = ({ prices }) => {
           type="date"
           className="border border-gray-300 rounded px-3 py-1"
           value={startDate}
-          max={new Date().toISOString().split("T")[0]} // disable future
+          max={new Date().toISOString().split("T")[0]} 
           onChange={(e) => setStartDate(e.target.value)}
         />
       </div>

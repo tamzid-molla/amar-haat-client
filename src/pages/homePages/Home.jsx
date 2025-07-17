@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Hero from '../../components/home/hero/Hero';
 import TopProducts from '../../components/home/topProducts/TopProducts';
 import { useQuery } from '@tanstack/react-query';
@@ -16,6 +16,10 @@ const Home = () => {
             return res.data
         },
     })
+
+    useEffect(() => {
+        document.title = "AmarHaat";
+      }, []);
 
     if(isLoading) return <PageLoader></PageLoader>
 

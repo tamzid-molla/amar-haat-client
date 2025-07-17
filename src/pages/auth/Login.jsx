@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaEnvelope,
   FaLock,
@@ -53,6 +53,11 @@ const Login = () => {
       setLoading(false)
     }
   };
+
+   useEffect(() => {
+      document.title = "AmarHaat || Login";
+    }, []);
+
   return (
     <div className="min-h-screen flex justify-center items-center">
       <div className=" rounded-xl w-full max-w-5xl p-6 md:p-10">

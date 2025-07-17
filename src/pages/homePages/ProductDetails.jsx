@@ -1,5 +1,5 @@
 // 👇 import at top
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiSolidDollarCircle } from "react-icons/bi";
 import { FaStore, FaCalendarAlt, FaUser, } from "react-icons/fa";
 import { useParams } from "react-router";
@@ -39,9 +39,11 @@ const ProductDetails = () => {
   } = product;
 
 
-  if (isLoading) return <PageLoader />;
+  useEffect(() => {
+      document.title = "AmarHaat || Product Details";
+    }, []);
 
-  console.log(role);
+  if (isLoading) return <PageLoader />;
 
   return (
     <div className="w-11/12 mx-auto p-8 space-y-12">

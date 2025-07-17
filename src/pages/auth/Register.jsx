@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import registerImage from "../../assets/authAssets/register.png";
 import GoogleLogin from "../../components/shared/authCompo/GoogleLogin";
@@ -60,6 +60,10 @@ const Register = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+        document.title = "AmarHaat || Register";
+      }, []);
 
   return (
     <div className="min-h-screen w-11/12 mx-auto px-4 rounded-2xl md:px-8 flex items-center justify-center">

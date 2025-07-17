@@ -73,11 +73,10 @@ const AllAdvertise = () => {
     <div className="bg-white shadow-md rounded-xl p-6">
       <h2 className="text-2xl font-bold mb-4">📢 All Advertisements</h2>
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto text-sm">
+        <table className="w-full min-w-[850px] table-auto text-sm">
           <thead className="bg-gray-100">
             <tr>
               <th className="p-3 text-left">Title</th>
-              <th className="p-3 text-left">Description</th>
               <th className="p-3 text-left">Vendor Email</th>
               <th className="p-3 text-left">Status</th>
               <th className="p-3 text-left">Actions</th>
@@ -87,7 +86,6 @@ const AllAdvertise = () => {
             {ads.map((ad) => (
               <tr key={ad._id} className="border-b">
                 <td className="p-3 font-medium">{ad.title}</td>
-                <td className="p-3 text-gray-600">{ad.description}</td>
                 <td className="p-3 text-gray-600">{ad.vendor_email}</td>
                 <td className="p-3 capitalize font-medium">{ad.status}</td>
                 <td className="p-3 space-x-2 flex flex-wrap items-center gap-2">
