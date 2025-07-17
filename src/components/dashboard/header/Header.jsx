@@ -1,5 +1,6 @@
 import { FaBars } from "react-icons/fa";
 import Logo from "../../shared/logo/Logo";
+import ClockCard from "../../shared/ClockCard/ClockCard";
 
 const Header = ({ toggleSidebar }) => {
   return (
@@ -7,13 +8,12 @@ const Header = ({ toggleSidebar }) => {
       <div className="flex items-center gap-2">
         <Logo></Logo>
       </div>
-
+      <div className=" hidden lg:block">
+        <ClockCard></ClockCard>
+      </div>
       <h2 className="hidden md:block text-2xl font-semibold">Dashboard</h2>
 
-      <button
-        onClick={toggleSidebar}
-        className="md:hidden text-2xl text-textPrimary"
-      >
+      <button onClick={toggleSidebar} className="md:hidden text-2xl text-textPrimary">
         <FaBars />
       </button>
     </header>

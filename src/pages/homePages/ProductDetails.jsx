@@ -1,7 +1,7 @@
 // 👇 import at top
 import { useState } from "react";
-
-import { FaStore, FaCalendarAlt, FaUser, FaStar, FaCartPlus, FaUserCircle } from "react-icons/fa";
+import { BiSolidDollarCircle } from "react-icons/bi";
+import { FaStore, FaCalendarAlt, FaUser, } from "react-icons/fa";
 import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/axios/useAxiosSecure";
@@ -41,6 +41,8 @@ const ProductDetails = () => {
 
   if (isLoading) return <PageLoader />;
 
+  console.log(role);
+
   return (
     <div className="w-11/12 mx-auto p-8 space-y-12">
       {/* ----------- Top Section (Image + Details) ------------ */}
@@ -71,8 +73,8 @@ const ProductDetails = () => {
               Date: {new Date(created_at).toLocaleDateString()}
             </p>
             <p>
-              {" "}
-              Price: <span className="text-green-600 font-bold">৳{pricePerUnit}/kg</span>
+              <BiSolidDollarCircle size={23} className="inline text-accent mr-2"/>
+              Price:{pricePerUnit}/kg
             </p>
             <p>
               <FaUser className="inline text-accent mr-2" />
