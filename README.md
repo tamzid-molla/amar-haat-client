@@ -1,12 +1,25 @@
-# React + Vite
+# 🛒 AmarHaat (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the **frontend** of the AmarHaat project — a dynamic online fresh market platform where users can browse and buy, vendors can list and advertise products, and admins can manage everything through a powerful dashboard.
 
-Currently, two official plugins are available:
+## 🔧 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React.js (with Vite)
+- React Router
+- Tailwind CSS
+- Axios
+- React Hook Form
+- TanStack Query (React Query)
+- Swiper.js
+- Chart.js (for dashboard charts)
+- Firebase Authentication
+- SweetAlert2, React Hot Toast
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+-  User: Browse products, track orders, and submit reviews
+-  Vendor: Add/edit products, manage price history, create ads
+-  Admin: Full control dashboard with stats, charts, and user roles
+-  Advertisements: Carousel and highlight sections
+-  Admin Dashboard: Realtime statistics & data visualizations
+-  Optimized fetching with React Query & Axios Interceptors
