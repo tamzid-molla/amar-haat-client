@@ -27,6 +27,7 @@ const Navbar = () => {
   const links = (
     <>
       <NavLinks path={"/"} name={"Home"}></NavLinks>
+      <NavLinks path={"/about"} name={"About Us"}></NavLinks>
       <NavLinks path={"/allProducts"} name={"All Products"}></NavLinks>
       {
         user && <>
