@@ -5,21 +5,23 @@ import useAxiosSecure from "../../hooks/axios/useAxiosSecure";
 import UpdateProductForm from "../../components/forms/UpdateProductForm";
 import { getPhotoURL } from "../../utils/shareUtils/ShareUtils";
 import PageLoader from "../../components/shared/pageLoader/PageLoader";
+import useAuth from "../../hooks/firebase/useAuth";
 
 const UpdateProduct = () => {
+  const { role } = useAuth();
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
-    const [loader, setLoader] = useState(false);
-    const [productLoading, setProductLoading] = useState(false);
+  const [loader, setLoader] = useState(false);
+  const [productLoading, setProductLoading] = useState(false);
 
   // Fetch existing product
-    useEffect(() => {
-      setProductLoading(true)
+  useEffect(() => {
+    setProductLoading(true);
     axiosSecure.get(`/product/${id}`).then((res) => {
-        setProduct(res.data);
-        setProductLoading(false);
+      setProduct(res.data);
+      setProductLoading(false);
     });
   }, [axiosSecure, id]);
 
@@ -34,16 +36,20 @@ const UpdateProduct = () => {
       };
 
       // If a new image is selected, upload it
-        if (image && image.length > 0) {
+      if (image && image.length > 0) {
         const photoURL = await getPhotoURL(image[0]);
         updatedData.product_image = photoURL;
-        }
+      }
 
       await axiosSecure.put(`/product/${id}`, updatedData);
-      toast.success("Product updated successfully!");
       reset();
       setPriceHistory([]);
-      navigate("/dashboard/myProducts");
+      if (role === "admin") {
+        navigate("/dashboard/allProducts");
+      } else {
+        navigate("/dashboard/myProducts");
+      }
+      toast.success("Product updated successfully!");
     } catch (err) {
       toast.error(" Failed to update product.");
     } finally {
@@ -51,15 +57,11 @@ const UpdateProduct = () => {
     }
   };
 
-if(productLoading) return <PageLoader></PageLoader>
+  if (productLoading) return <PageLoader></PageLoader>;
   return (
     <div className="max-w-5xl mx-auto px-4">
       <h2 className="text-3xl font-bold mb-6">🛠️ Update Product</h2>
-      <UpdateProductForm
-        onSubmit={handleUpdate}
-        loader={loader}
-        product={product}
-      />
+      <UpdateProductForm onSubmit={handleUpdate} loader={loader} product={product} />
     </div>
   );
 };

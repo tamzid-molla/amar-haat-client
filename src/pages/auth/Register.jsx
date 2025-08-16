@@ -9,9 +9,10 @@ import { Link, useNavigate } from "react-router";
 import { getPhotoURL, SaveUserInDb, validPass } from "../../utils/shareUtils/ShareUtils";
 import useAuth from "../../hooks/firebase/useAuth";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const Register = () => {
-  const { setUser, registerWithEmailPass, updateUser,logOutUser, user } = useAuth();
+  const { registerWithEmailPass, updateUser,logOutUser, } = useAuth();
   const [loading, setLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
@@ -25,15 +26,14 @@ const Register = () => {
     const photo = e.target.photo.files[0];
     const password = e.target.password.value;
     const confirmPassword = e.target.confirm_password.value;
-    console.log(photo);
 
-    //Generate Photo URL
-    const imageURL = await getPhotoURL(photo);
-    // Valid password
-    const passwordValidation = await validPass(password, confirmPassword);
-    if (!passwordValidation) return;
-
+    
     try {
+      // Generate Photo URL
+      const imageURL = await getPhotoURL(photo);
+      // Valid password
+      const passwordValidation = await validPass(password, confirmPassword);
+      if (!passwordValidation) return;
       //Create user with email and password
       const credential = await registerWithEmailPass(email, password);
       const newUser = credential?.user;
@@ -48,7 +48,8 @@ const Register = () => {
       // save user Data
       await SaveUserInDb(updatedUser);
       logOutUser().then(() => {
-            navigate("/login");
+        toast.success("Register successfully")
+        navigate("/login");
           });
     } catch (error) {
       Swal.fire({
@@ -121,7 +122,7 @@ const Register = () => {
             </div>
 
             {/* Google login  */}
-            <GoogleLogin></GoogleLogin>
+            <GoogleLogin emailLoading={loading}></GoogleLogin>
 
             <p className="text-center text-sm mt-4">
               Already have an account?

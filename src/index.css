@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
 @import "tailwindcss";
 
 @theme{
@@ -9,4 +10,8 @@
   /* Text Colors  */
   --color-textPrimary: #333333;
   --color-textSecondary: #242424;
+}
+
+body{
+    font-family: "Alata", sans-serif;
 }

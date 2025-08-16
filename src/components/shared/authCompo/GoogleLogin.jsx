@@ -6,7 +6,7 @@ import { ClipLoader } from "react-spinners";
 import { useNavigate } from "react-router";
 import { SaveUserInDb } from "../../../utils/shareUtils/ShareUtils";
 
-const GoogleLogin = () => {
+const GoogleLogin = ({emailLoading}) => {
   const [loading, setLoading] = useState(false);
   const { googleLogin, setUser } = useAuth();
   const navigate = useNavigate();
@@ -41,13 +41,16 @@ const GoogleLogin = () => {
       setLoading(false);
     }
   };
+
+  const isDisabled = loading || emailLoading;
+
   return (
     <div>
       <button
-        disabled={loading ? true : false}
+        disabled={isDisabled}
         onClick={handleGoogleLogin}
         className={`w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition duration-200 flex items-center justify-center gap-2 mt-4 ${
-          loading ? "cursor-not-allowed" : "cursor-pointer"
+          isDisabled ? "cursor-not-allowed" : "cursor-pointer"
         }`}>
         {loading ? <ClipLoader size={19} /> : <FaGoogle />}
         {!loading && "Sign in with Google"}

@@ -62,8 +62,6 @@ const UpdateProductForm = ({ onSubmit, loader, product }) => {
         ...data,
         date: selectedDate,
         prices: priceHistory,
-        // for image, if new file selected, data.image has file,
-        // else can handle in parent component
       },
       reset,
       setPriceHistory

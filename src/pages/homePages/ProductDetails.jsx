@@ -46,7 +46,7 @@ const ProductDetails = () => {
   if (isLoading) return <PageLoader />;
 
   return (
-    <div className="w-11/12 mx-auto p-8 space-y-12">
+    <div className="w-11/12 mx-auto p-8 pt-34 space-y-12">
       {/* ----------- Top Section (Image + Details) ------------ */}
       <div className="grid md:grid-cols-2 gap-12 items-start">
         {/* Left: Image */}

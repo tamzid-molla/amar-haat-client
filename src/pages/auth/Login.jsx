@@ -45,7 +45,7 @@ const Login = () => {
       Swal.fire({
         icon: "error",
         title: "Login Failed",
-        text: error.message || "An error occurred during login.",
+        text: "Incorrect email or password.",
         timer: 2000,
         showConfirmButton: false,
       });
@@ -109,7 +109,7 @@ const Login = () => {
             </div>
 
             {/* Google Login */}
-            <GoogleLogin></GoogleLogin>
+            <GoogleLogin emailLoading={loading}></GoogleLogin>
                       
             <p className="text-center text-sm mt-4">
               Don't have an account?

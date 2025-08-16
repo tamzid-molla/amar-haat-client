@@ -19,6 +19,8 @@ const AllProducts = () => {
   const formattedStart = startDate ? startDate.toISOString() : "";
   const formattedEnd = endDate ? endDate.toISOString() : "";
 
+  console.log(formattedStart);
+
   const { data: products = [], isLoading } = useQuery({
     queryKey: ["all products", formattedStart, formattedEnd, sortOrder],
     queryFn: async () => {
@@ -39,13 +41,13 @@ const AllProducts = () => {
 
   return (
     <div className="p-4 md:p-8 min-h-screen">
-      <h2 className="text-3xl font-bold mb-6 text-accent">All Market Products</h2>
+      <h2 className="text-3xl font-bold mt-16 mb-6 text-accent">All Market Products</h2>
 
       {/* Filters */}
       <div className="flex flex-wrap gap-4 items-end mb-8 p-4 rounded-xl">
         {/* Start Date */}
         <div className="flex flex-col">
-          <label className="text-sm font-semibold text-gray-600 mb-1">📅 Start Date</label>
+          <label className="text-sm font-semibold text-gray-600 mb-1">Start Date</label>
           <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
@@ -56,7 +58,7 @@ const AllProducts = () => {
 
         {/* End Date */}
         <div className="flex flex-col">
-          <label className="text-sm font-semibold text-gray-600 mb-1">📅 End Date</label>
+          <label className="text-sm font-semibold text-gray-600 mb-1"> End Date</label>
           <DatePicker
             selected={endDate}
             onChange={(date) => setEndDate(date)}

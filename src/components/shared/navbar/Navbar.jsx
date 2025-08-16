@@ -37,7 +37,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="bg-bgPrimary border-b">
+    <nav className="bg-bgPrimary border-b fixed w-full z-10">
       <div className="w-11/12 mx-auto flex justify-between items-center h-16">
         {/* Logo and name */}
         <Logo></Logo>

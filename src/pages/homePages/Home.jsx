@@ -24,7 +24,7 @@ const Home = () => {
     if(isLoading) return <PageLoader></PageLoader>
 
     return (
-        <div>
+        <div className='pt-14'>
             <Hero></Hero>
             <TopProducts products={products}></TopProducts>
             <HighlightsAdd></HighlightsAdd>
