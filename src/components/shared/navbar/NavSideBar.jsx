@@ -5,9 +5,9 @@ import Button from '../buttons/Button';
 const NavSideBar = ({ links, menuOpen, handleLogout,user }) => {
     return (
           <div
-      className={`z-50 flex flex-col justify-between overflow-x-hidden bg-white shadow-lg w-64 space-y-6 px-4 py-6 absolute inset-y-0 left-0 transition-transform duration-500 ease-in-out transform ${
+      className={`z-50 flex flex-col fixed justify-between overflow-x-hidden bg-white shadow-lg w-64 space-y-6 px-4 py-6 inset-y-0 left-0 transition-transform duration-500 ease-in-out transform ${
         menuOpen ? 'translate-x-0' : '-translate-x-full'
-      } md:translate-x-0`}
+      } lg:translate-x-0`}
     >
             <ul className='flex flex-col gap-3'>{links}</ul>
             {user ? (

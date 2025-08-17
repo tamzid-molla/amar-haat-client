@@ -44,7 +44,7 @@ const Navbar = () => {
         {/* Logo and name */}
         <Logo></Logo>
         {/* NavLinks  */}
-        <ul className="hidden md:flex space-x-6">{links}</ul>
+        <ul className="hidden lg:flex space-x-6">{links}</ul>
         {/* Auth related */}
         <div className="flex gap-5 items-center">
           <Link to="/dashboard/profile">
@@ -65,7 +65,7 @@ const Navbar = () => {
             )}
           </div>
           </Link>
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="hidden lg:flex items-center space-x-4">
           {user ? (
             <Button name={"Logout"} onClick={handleLogout}></Button>
             ) : (
@@ -80,7 +80,7 @@ const Navbar = () => {
           )}
         </div>
         {/* Hamburger for Mobile */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <button onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <FaTimes className="text-2xl text-gray-700" /> : <FaBars className="text-2xl text-gray-700" />}
           </button>
@@ -89,7 +89,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <NavSideBar menuOpen={menuOpen} links={links} handleLogout={handleLogout} user={user}></NavSideBar>
       </div>
     </nav>
