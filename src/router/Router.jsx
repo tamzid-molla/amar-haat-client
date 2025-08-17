@@ -28,6 +28,7 @@ import VendorRoute from "../route/VendorRoute";
 import AdminAndVendorRoute from "../route/AdminAndVendorRoute";
 import DashboardMainPage from "../pages/dashboardPages/Mainpage/DashboardMainPage";
 import AboutUs from "../pages/aboutUs/AboutUs";
+import Services from "../pages/ServicesPage/Services";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
       {
         path: "/about",
         element: <AboutUs></AboutUs>
+      },
+      {
+        path: "/services",
+        element: <Services></Services>
       }
     ],
   },
